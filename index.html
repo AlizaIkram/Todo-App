@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -20,8 +21,11 @@
             <div class="task incomplete">
               <span>Maths homework</span>
             </div>
-
-            <div class="checkbox" id="task1"></div>
+            <div class="wrapper">
+            <img src="assets/border_color_24dp_C89F7E_FILL0_wght400_GRAD0_opsz24.svg" alt="edit" class="edit-icon">
+            <img src="assets/delete_24dp_C89F7E_FILL0_wght400_GRAD0_opsz24.svg" alt="delete" class="delete-icon">
+             <div class="checkbox" id="task1"></div>
+            </div>
           </div>
         </div>
 
@@ -36,8 +40,9 @@
         </div>
       <footer>
         <input type="text" placeholder="Type here.." />
-        <button>&#9658;</button>
+        <button id="add">&#9658;</button>
       </footer>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>
