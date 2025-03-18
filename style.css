@@ -51,6 +51,11 @@ header {
     justify-content: space-between;
     align-items: flex-start;
 }
+
+li {
+    list-style-type: none;
+}
+
 .task {
     background: #ffffff;
     padding: 10px 15px;
