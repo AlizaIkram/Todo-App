@@ -61,13 +61,16 @@ header {
 .checkbox {
     width: 20px;
     height: 20px;
+    margin-top: 10px;
     border-radius: 50%;
     border: 2px solid #333;
     display: flex;
     cursor: pointer;
 }
+
+
 .checkbox.checked {
-    background: #333;
+    background: #df9f4b;
 } 
 .completed {
     background: #808d67;
