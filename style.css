@@ -61,6 +61,10 @@
     align-items: center;
     gap: 10px;
   }
+
+  .hidden-edit {
+    display: flex;
+  }
   
   .edit-icon,
   .delete-icon {
@@ -81,7 +85,7 @@
     background: #333;
   }
   
-  .todo-list-completed li {
+  .todo-list.completed li {
     background-color: #808d67;
     color: #333;
   }
