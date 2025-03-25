@@ -1,22 +1,24 @@
 const addBtn = document.querySelector("#add");
 const taskInput = document.querySelector("#task-input");
 const completedList = document.querySelector(".todo-list.completed");
-const editIcon = document.querySelector(".edit-icon");
+const incompleteList = document.querySelector(".todo-list.incomplete");
 const ul = document.querySelector(".todo-list");
-const optionsInc = document.querySelector(".actions");
-const tasks = document.querySelector(".tasks");
-// const taskEdit = document.querySelector("#task-edit");
-const deleteIcon = document.querySelector(".delete-icon");
-const taskDelete = document.querySelector("#task-delete");
-const incompleteIcon = document.querySelector(".checkbox");
-const completedIcon = document.querySelector("#task-completed");
 
+addBtn.addEventListener("click", addTask);
+
+taskInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    addTask();
+  }
+})
 function addTask() {
-  addBtn.addEventListener("click", () => {
-    if (taskInput.value === "") {
+  
+    if (taskInput.value.trim() === "") {
       alert("Please enter a task");
       return;
-    } else {
+    } 
+
       const task = taskInput.value;
       const li = document.createElement("li");
 
@@ -30,35 +32,51 @@ function addTask() {
       ul.appendChild(li);
 
       taskInput.value = "";
-
-      editTask();
-      deleteTask();
-      taskCompleted();
-      undoCompletedTask();
-    }
-  });
+  
 }
 
-addTask();
 
 function editTask() {
   ul.addEventListener("click", (e) => {
     if (e.target.classList.contains("edit-icon")) {
       const li = e.target.closest("li"); // target the icon's closest li. Good to use when you dont know how many wrappers you have as parents
       const liContent = li.querySelector("span"); // Then li's span
-      liContent.setAttribute("contenteditable", "true");
-      liContent.focus();
-      console.log(e.target.innerHTML);
+
+      if (e.target.alt === "edit") {
+        liContent.setAttribute("contenteditable", "true");
+        liContent.focus();
+        // Move cursor to the end of the content
+        const range = document.createRange();
+        range.selectNodeContents(liContent);
+        range.collapse(false); // false = end of the node
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        // Change the icon
+        e.target.src = "assets/save_24dp_C89F7E_FILL0_wght400_GRAD0_opsz24.svg";
+        e.target.alt = "save";
+      } else if (e.target.alt === "save") {
+        if (liContent.textContent === "") {
+          li.remove();
+        } else {
+          liContent.setAttribute("contenteditable", "false");
+          e.target.src =
+            "assets/border_color_24dp_C89F7E_FILL0_wght400_GRAD0_opsz24.svg";
+          e.target.alt = "edit";
+        }
+      }
     }
   });
 }
 
 function deleteTask() {
-  ul.addEventListener("click", (e) => {
-    if (e.target.classList.contains("delete-icon")) {
-      const li = e.target.closest("li");
-      li.remove();
-    }
+  [incompleteList, completedList].forEach((list) => {
+    list.addEventListener("click", (e) => {
+      if (e.target.classList.contains("delete-icon")) {
+        const li = e.target.closest("li");
+        li.remove();
+      }
+    });
   });
 }
 
@@ -66,17 +84,37 @@ function taskCompleted() {
   ul.addEventListener("click", (e) => {
     if (e.target.classList.contains("checkbox")) {
       const li = e.target.closest("li");
-
+      if (li.querySelector("span").getAttribute("contenteditable") === "true") {
+        alert("Please save the task first");
+        return;
+      }
       completedList.appendChild(li);
+      const circle = li.querySelector(".checkbox");
+      circle.classList.add("checked");
+      circle.style.backgroundColor = "#c89f7e";
 
-      const editHidden = document.querySelector(".edit-icon.hidden-edit");
+      const editHidden = li.querySelector(".edit-icon.hidden-edit");
       editHidden.style.display = "none";
-
-      deleteTask();
     }
   });
 }
 
-function undoCompletedTask() {}
+function undoCompletedTask() {
+  completedList.addEventListener("click", (e) => {
+    if (e.target.classList.contains("checked")) {
+      const li = e.target.closest("li");
+      incompleteList.appendChild(li);
 
-// want to replace the edit icon with save and then save to edit
+      const editHidden = li.querySelector(".edit-icon.hidden-edit");
+      editHidden.style.display = "flex";
+
+      const circle = li.querySelector(".checkbox");
+      circle.style.backgroundColor = "transparent";
+    }
+  });
+}
+
+editTask();
+deleteTask();
+taskCompleted();
+undoCompletedTask();
