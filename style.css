@@ -1,123 +1,142 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #b97657d3;
-    font-family: Arial, sans-serif;
-  }
-  
-  .container {
-    width: 400px;
-    background-color: #5a6b44;
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  header {
-    background: #b6e09d;
-    padding: 10px;
-    border-radius: 20px;
-    font-weight: bold;
-  }
-  
-  .menu-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .menu-icon, .settings-icon {
-    cursor: pointer;
-  }
-  
-  .tasks-container {
-    margin-top: 20px;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    background: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
-    border-radius: 15px;
-    margin-bottom: 10px;
-  }
-  
-  .actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  .hidden-edit {
-    display: flex;
-  }
-  
-  .edit-icon,
-  .delete-icon {
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-  }
-  
-  .checkbox {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #333;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  
-  .checkbox.checked {
-    background: #333;
-  }
-  
-  .todo-list.completed li {
-    background-color: #808d67;
-    color: #333;
-  }
-  
-  .divider {
-    border-top: 1px solid white;
-    margin: 20px 0;
-  }
-  
-  footer {
-    display: flex;
-    justify-content: space-between;
-    background: #c89f7e;
-    padding: 10px;
-    border-radius: 20px;
-    margin-top: 20px;
-  }
-  
-  input {
-    border: none;
-    background: none;
-    flex-grow: 1;
-    outline: none;
-    color: white;
-    font-size: 16px;
-  }
-  
-  button {
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 20px;
-    color: #fff;
-  }
-  
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #b97657d3;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 400px;
+  background-color: #5a6b44;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+header {
+  background: #b6e09d;
+  padding: 10px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.menu-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-icon,
+.settings-icon {
+  cursor: pointer;
+}
+
+.tasks-container {
+  margin-top: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+span {
+  background-color: #b6e09d;
+  display: inline-block; /* or block */
+  word-wrap: break-word;
+  white-space: normal;
+  max-width: 70%; /* Optional: to restrict it within li */
+  padding: 10px 15px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+span:focus {
+  color: #444444;
+  outline:none;
+  border: none;
+
+}
+
+.todo-list.completed li span {
+  background-color: #808d67;
+  color: #333;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hidden-edit {
+  display: flex;
+}
+
+.edit-icon,
+.delete-icon,
+.save-icon {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.checkbox.checked {
+  background: #333;
+}
+
+/* .todo-list.completed li {
+  background-color: #808d67;
+  color: #333;
+} */
+
+.divider {
+  border-top: 1px solid white;
+  margin: 20px 0;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  background: #c89f7e;
+  padding: 10px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+input {
+  border: none;
+  background: none;
+  flex-grow: 1;
+  outline: none;
+  font-size: 16px;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+}
